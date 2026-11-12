@@ -61,3 +61,23 @@ We support lawful efforts to protect lives, conduct rescues and provide responsi
 [Threat model](docs/THREAT_MODEL.md) · [Red Team engineering](docs/REDTEAM_ENGINEERING.md) · [Roadmap](docs/ROADMAP.md) · [Codex instructions](AGENTS.md)
 
 **© 2026 Chris Cruz (@h4ckd4d).**
+
+## Next technical increment (v0.2 candidate)
+
+SARIF 2.1.0 export for GitHub code scanning (heuristic results; no secret values).
+
+```bash
+reposentinel scan . --format sarif > report.sarif
+```
+
+**Chris Cruz — @h4ckd4d**.
+
+## v0.3 candidate enhancement
+
+New feature with automated tests: CI policy gate for configurable finding budgets (exit code 2 on failure).
+
+```bash
+reposentinel scan . --max-findings 0
+```
+
+[Commercial scaling plan](docs/COMMERCIAL.md). Chris Cruz — @h4ckd4d.

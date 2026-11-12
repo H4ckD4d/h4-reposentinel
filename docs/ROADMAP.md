@@ -5,3 +5,9 @@
 - **v0.3, planned:** community review, accessibility, translation improvements and release automation.
 
 No production status or deployment date is implied.
+
+## Candidate v0.2 / Incremento proposto
+
+- SARIF 2.1.0 para GitHub Code Scanning (resultado heurístico, sem dados secretos).
+- Demonstração CLI: `reposentinel scan . --format sarif > report.sarif`.
+- Exige revisão e testes antes de uso operacional.
