@@ -27,3 +27,12 @@ class CoreTests(unittest.TestCase):
         report={'findings':[{'file':'.env','line':None,'rule':'environment-file-present','severity':'review'}]}
         loc=to_sarif(report)['runs'][0]['results'][0]['locations'][0]['physicalLocation']
         self.assertNotIn('region',loc)
+
+    def test_gate_threshold(self):
+        from reposentinel.core import evaluate_gate
+        self.assertFalse(evaluate_gate({'findings': [{'rule':'demo'}]}, 0)['passed'])
+        self.assertTrue(evaluate_gate({'findings': [{'rule':'demo'}]}, 1)['passed'])
+    def test_gate_negative_budget(self):
+        from reposentinel.core import evaluate_gate
+        with self.assertRaises(ValueError):
+            evaluate_gate({'findings': []}, -1)

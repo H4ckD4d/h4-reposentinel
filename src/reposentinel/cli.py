@@ -25,6 +25,9 @@ def main():
     else:
         result = core.run(args)
     print(json.dumps(result, ensure_ascii=False, indent=2))
+    if args.command == 'scan' and args.max_findings is not None:
+        passed = len(result['runs'][0]['results']) <= args.max_findings if args.format == 'sarif' else result['gate']['passed']
+        raise SystemExit(0 if passed else 2)
 
 if __name__ == "__main__":
     main()

@@ -40,9 +40,12 @@ def configure(sub):
     p = sub.add_parser('scan', help='Audit a local directory you own')
     p.add_argument('path')
     p.add_argument('--format', choices=['json', 'sarif'], default='json', help='Output format (SARIF for GitHub code scanning)')
+    p.add_argument('--max-findings', type=int, default=None, help='Allowed findings for CI gate')
 
 def run(args):
     result = scan(args.path)
+    if args.max_findings is not None:
+        result['gate'] = evaluate_gate(result, args.max_findings)
     return to_sarif(result) if args.format == 'sarif' else result
 
 def demo():
@@ -81,3 +84,11 @@ def to_sarif(report):
             'results': results,
         }],
     }
+
+
+def evaluate_gate(report, maximum):
+    """Check CI finding budget without exposing secret values."""
+    if not isinstance(maximum, int) or maximum < 0:
+        raise ValueError('maximum findings must be nonnegative')
+    count = len(report.get('findings', []))
+    return {'passed': count <= maximum, 'observed': count, 'maximum': maximum}

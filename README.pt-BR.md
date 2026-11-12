@@ -71,3 +71,13 @@ reposentinel scan . --format sarif > report.sarif
 ```
 
 **Chris Cruz — @h4ckd4d**.
+
+## Incremento candidato v0.3
+
+Nova funcionalidade com testes automatizados: CI policy gate for configurable finding budgets (exit code 2 on failure).
+
+```bash
+reposentinel scan . --max-findings 0
+```
+
+[Commercial scaling plan](docs/COMMERCIAL.md). Chris Cruz — @h4ckd4d.
