@@ -61,3 +61,13 @@ Apoyamos las labores legales de protección de vidas, rescate y seguridad de pro
 [Threat model](docs/THREAT_MODEL.md) · [Red Team engineering](docs/REDTEAM_ENGINEERING.md) · [Roadmap](docs/ROADMAP.md) · [Codex instructions](AGENTS.md)
 
 **© 2026 Chris Cruz (@h4ckd4d).**
+
+## Siguiente mejora técnica (v0.2 candidate)
+
+Exportación SARIF 2.1.0 para análisis de código GitHub (resultados heurísticos; sin secretos).
+
+```bash
+reposentinel scan . --format sarif > report.sarif
+```
+
+**Chris Cruz — @h4ckd4d**.
