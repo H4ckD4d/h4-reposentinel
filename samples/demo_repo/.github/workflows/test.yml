@@ -1,0 +1,3 @@
+name: Sample
+permissions: write-all
+on: pull_request_target
